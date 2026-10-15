@@ -28,7 +28,8 @@ SECRET_KEY = 'django-insecure-%hodks^u@arq^bv-tms#o!v$c*p6_5o%yvw!!u+n9ber@*g9*f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+# Локальный запуск (runserver); django_heroku дополняет список на Heroku.
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
