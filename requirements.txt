@@ -7,3 +7,4 @@ django-heroku
 pytz
 sqlparse
 pyyaml
+pycodestyle
