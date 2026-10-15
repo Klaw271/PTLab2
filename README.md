@@ -218,9 +218,22 @@ sequenceDiagram
 4. Проверка реакции CI: намеренная ошибка в правиле цены → красный билд →
    `git revert` → зелёный билд (таблица ниже).
 5. CD (Render): `render.yaml` описывает web-сервис `tplab2-electronics-shop`
-   (python, gunicorn, `collectstatic`, `migrate`, `loaddata`) и бесплатную
-   PostgreSQL-БД, из которой в сервис передаётся `DATABASE_URL`. Подключённый
+   (python, `pip install`, `collectstatic`, `migrate`, запуск через `gunicorn`)
+   и бесплатную PostgreSQL-БД, чей `DATABASE_URL` передаётся сервису; секреты
+   (`SECRET_KEY`) генерируются Render и не хранятся в репозитории. Подключённый
    GitHub-репозиторий разворачивает приложение при каждом пуше в `master`.
+
+### Развёртывание вручную (однократно)
+
+1. Render → *New* → *Blueprint*: репозиторий `Klaw271/PTLab2`, файл `render.yaml`
+   (Render сам предложит авторизовать GitHub-приложение Blueprint).
+2. После первого билда — *Shell* → `python manage.py loaddata products.yaml`,
+   чтобы заполнить каталог стартовыми товарами. Фикстуры намеренно не включены в
+   `buildCommand`: `loaddata` перезаписывает `price` и `quantity` товаров с
+   фиксированными `pk`, и каждый новый деплой обнулял бы накопленные покупки и
+   повышения цен.
+3. Проверка: `https://<service>.onrender.com/` отдаёт список товаров, покупка
+   уменьшает остаток, а 10-я продажа поднимает цену на 15 %.
 
 ### Проверка реакции CI
 
