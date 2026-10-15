@@ -193,11 +193,11 @@ sequenceDiagram
 1. Окружение и запуск локально:
 
    ```powershell
-   winget install PostgreSQL.PostgreSQL     # пароль superuser: ps_password
+   winget install PostgreSQL.PostgreSQL     # superuser и его задаём сами
    psql -c "create database django_db owner postgres;" -U postgres
    python -m venv .venv-tplab2 && .venv-tplab2\Scripts\Activate.ps1
    pip install -r requirements.txt
-   $env:DATABASE_PASSWORD = "ps_password"
+   $env:DATABASE_PASSWORD = "<пароль superuser>"   # только локально, не в git
    python manage.py migrate
    python manage.py loaddata products.yaml
    python manage.py runserver
