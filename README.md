@@ -215,6 +215,8 @@ sequenceDiagram
 3. CI (GitHub Actions): workflow `Testing the Python code` поднимает сервис
    `postgres:13`, ставит зависимости, запускает `pycodestyle`, применяет
    миграции, загружает фикстуры и выполняет `python manage.py test shop/tests/`.
+   Файл `.travis.yml` оставлен в репозитории как конфигурация по методичке, но
+   конвейер на Travis не активирован.
 4. Проверка реакции CI: намеренная ошибка в правиле цены → красный билд →
    `git revert` → зелёный билд (таблица ниже).
 5. CD (Render): `render.yaml` описывает web-сервис `tplab2-electronics-shop`
@@ -245,6 +247,8 @@ sequenceDiagram
 | [#1](https://github.com/Klaw271/PTLab2/actions/runs/38731828455) | `60278d7` | базовое состояние варианта 8 | `success`: lint, миграции, фикстуры, 23 теста |
 | [#2](https://github.com/Klaw271/PTLab2/actions/runs/38732063780) | `db82140` | `price_up_percent` заменён с `15` на `5` | `failure` на шаге `Test with Django` (4 теста: `1050 != 1150`, `1102 != 1322`, `1048 != 1148`), линтер — успешен |
 | [#3](https://github.com/Klaw271/PTLab2/actions/runs/38732707497) | `483bc94` | `git revert` предыдущего коммита | `success` |
+| [#4](https://github.com/Klaw271/PTLab2/actions/runs/38733132049) | `885dea2` | merge `--no-ff` ветки в `master` | `success`, запускает CD |
+| [#5](https://github.com/Klaw271/PTLab2/actions/runs/38733589513) | `6afed9b` | фикстуры вынесены из `buildCommand` | `success` |
 
 Ошибка в проценте повышения цены не портит работу приложения «на глаз» (товар
 всё так же продаётся, цена всё так же растёт), но меняет бизнес-правило варианта,
