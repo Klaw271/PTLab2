@@ -1,15 +1,24 @@
 - model: shop.product
   pk: 1
   fields:
-    name: Стол
-    price: 2000
+    name: Смартфон
+    price: 30000
+    quantity: 25
 - model: shop.product
   pk: 2
   fields:
-    name: Стул
-    price: 1000
+    name: Ноутбук
+    price: 60000
+    quantity: 12
 - model: shop.product
   pk: 3
   fields:
-    name: Табурет
-    price: 500
+    name: Наушники
+    price: 3000
+    quantity: 30
+- model: shop.product
+  pk: 4
+  fields:
+    name: Монитор
+    price: 20000
+    quantity: 4
