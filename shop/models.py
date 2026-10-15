@@ -12,7 +12,7 @@ class Product(models.Model):
 
     # Вариант 8: каждые 10 проданных экземпляров повышают цену на 15%.
     price_step_units = 10
-    price_up_percent = 5
+    price_up_percent = 15
 
     def in_stock(self):
         return self.quantity > 0
