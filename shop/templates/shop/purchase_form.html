@@ -7,22 +7,29 @@
 <body>
     <div>
         <h3>Покупка</h3>
-        <form method="post">{% csrf_token %}
-            <input type="hidden" value="{{ view.kwargs.product_id }}" name="product" />
-            <table>
-                <tr>
-                    <td><p>Введите свое имя </p></td>
-                    <td><input type="text" name="person" /> </td>
-                </tr>
-                <tr>
-                    <td><p>Введите адрес доставки:</p></td>
-                    <td>
-                        <input type="text" name="address" />
-                    </td>
-                </tr>
-                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
-            </table>
-        </form>
+        <p>Товар: {{ product.name }}, цена: {{ product.price }}, в наличии: {{ product.quantity }}</p>
+        {% if product.in_stock %}
+            <form method="post">{% csrf_token %}
+                {{ form.errors }}
+                <input type="hidden" value="{{ view.kwargs.product_id }}" name="product" />
+                <table>
+                    <tr>
+                        <td><p>Введите свое имя </p></td>
+                        <td><input type="text" name="person" /> </td>
+                    </tr>
+                    <tr>
+                        <td><p>Введите адрес доставки:</p></td>
+                        <td>
+                            <input type="text" name="address" />
+                        </td>
+                    </tr>
+                    <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+                </table>
+            </form>
+        {% else %}
+            <p>Товар закончился, покупка невозможна.</p>
+        {% endif %}
+        <p><a href="/">К списку товаров</a></p>
     </div>
 </body>
 </html>
