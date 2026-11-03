@@ -45,6 +45,18 @@ class PurchasePageContextTestCase(TestCase):
         self.assertEqual(response.context["product"].pk, self.product.pk)
         self.assertIn("form", response.context)
 
+    def test_buy_page_of_missing_product_returns_404(self):
+        response = self.client.get("/buy/999999/")
+        self.assertEqual(response.status_code, 404)
+
+    def test_purchase_of_missing_product_returns_404(self):
+        response = self.client.post(
+            "/buy/999999/",
+            {"product": 999999, "person": "Иванов",
+             "address": "ул. Светлая, 1"})
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(Purchase.objects.count(), 0)
+
     def test_valid_form_answers_with_plain_text(self):
         response = self.client.post(
             f"/buy/{self.product.id}/",

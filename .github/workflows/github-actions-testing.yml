@@ -56,4 +56,7 @@ jobs:
           python manage.py loaddata products.yaml
       - name: Test with Django
         run: |
-          python manage.py test shop/tests/
+          coverage run manage.py test shop/tests/
+      - name: Enforce test coverage
+        run: |
+          coverage report -m --fail-under=100
