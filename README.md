@@ -310,6 +310,8 @@ sequenceDiagram
 | [#7](https://github.com/Klaw271/PTLab2/actions/runs/41622010417) | `498aed6` | merge `--no-ff` этой ветки в `master` | `success`, запускает CD |
 | [#8](https://github.com/Klaw271/PTLab2/actions/runs/41624260319) | `3b7dc83` | ветка `feature/coverage-gate-and-404`: правка `404` и порог полноты в CI | `success`: 69 тестов, шаг `Enforce test coverage` пройден |
 | [#9](https://github.com/Klaw271/PTLab2/actions/runs/41624556931) | `8619b6d` | merge `--no-ff` этой ветки в `master` | `success`, запускает CD |
+| [#10](https://github.com/Klaw271/PTLab2/actions/runs/41624995523) | `44a85cc` | описание порога полноты в README | `success`: 69 тестов, шаг `Enforce test coverage` пройден |
+| [#11](https://github.com/Klaw271/PTLab2/actions/runs/41644593148) | `82e1aae` | раздел о восстановлении после истечения бесплатной БД | `success`, запускает CD |
 
 Ошибки в правиле цены не портят работу приложения «на глаз» (товар всё так же
 продаётся, цена всё так же растёт), но меняют бизнес-правило варианта, и их
